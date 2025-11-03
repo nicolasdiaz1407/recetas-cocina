@@ -1,0 +1,159 @@
+/* src/components/Recetas/Pagination.module.css */
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 3rem 0 2rem;
+  padding: 0 1rem;
+  flex-wrap: wrap;
+}
+
+/* Navigation Buttons */
+.navButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-bg);
+  border: 2px solid var(--color-border);
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: var(--font-size-small);
+  color: var(--color-text-dark);
+  transition: all 0.3s ease;
+  min-width: 110px;
+  justify-content: center;
+}
+
+.navButton:hover:not(:disabled) {
+  border-color: var(--color-accent-primary);
+  background: var(--color-accent-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.navButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Pages Container */
+.pages {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Page Buttons */
+.pageButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  height: 44px;
+  padding: 0 0.5rem;
+  background: var(--color-bg);
+  border: 2px solid var(--color-border);
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: var(--font-size-body);
+  color: var(--color-text-dark);
+  transition: all 0.3s ease;
+}
+
+.pageButton:hover:not(.active) {
+  border-color: var(--color-accent-primary);
+  background: var(--color-accent-light);
+  transform: translateY(-1px);
+}
+
+.pageButton.active {
+  background: var(--color-accent-primary);
+  color: white;
+  border-color: var(--color-accent-primary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(173, 154, 101, 0.3);
+}
+
+/* Dots */
+.dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  height: 44px;
+  color: var(--color-text-light);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .pagination {
+    gap: 0.5rem;
+    margin: 2rem 0 1rem;
+    flex-wrap: nowrap; /* mantiene todo en una fila */
+  }
+
+  .navButton {
+    padding: 0.5rem 0.75rem;
+    min-width: 80px;
+    font-size: 0.8rem;
+  }
+
+  .navButton span {
+    display: none; /* escondemos texto, dejamos solo flechas */
+  }
+
+  .navButton.prevButton::after {
+    content: "←";
+    font-size: 1rem;
+  }
+
+  .navButton.nextButton::after {
+    content: "→";
+    font-size: 1rem;
+  }
+
+  .pages {
+    gap: 0.25rem;
+  }
+
+  .pageButton {
+    min-width: 36px;
+    height: 36px;
+    font-size: 0.75rem;
+  }
+
+  .dots {
+    min-width: 36px;
+    height: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pagination {
+    gap: 0.4rem;
+  }
+
+  .navButton {
+    padding: 0.4rem 0.6rem;
+    min-width: 70px;
+    font-size: 0.75rem;
+  }
+
+  .pageButton {
+    min-width: 32px;
+    height: 32px;
+    font-size: 0.7rem;
+    border-radius: 8px;
+  }
+
+  .dots {
+    min-width: 32px;
+    height: 32px;
+  }
+}

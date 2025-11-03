@@ -1,0 +1,176 @@
+/* src/components/ui/Carousel/Carousel.module.css (actualizado) */
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0 0 2rem 0;
+  overflow: hidden;
+}
+
+.carouselViewport {
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+}
+
+.carouselContent.animated {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+}
+
+.carouselItem {
+  padding: 0 0.75rem;
+  box-sizing: border-box;
+  min-width: 0;
+  height: 100%;
+}
+
+/* Botones de navegación */
+.carouselBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  border: 2px solid var(--color-border);
+  color: var(--color-text-dark);
+  font-size: 1.5rem;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carouselBtn.prev {
+  left: -14px;
+}
+
+.carouselBtn.next {
+  right: -14px;
+}
+
+.carousel:hover .carouselBtn:not(:disabled) {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.carouselBtn:hover:not(:disabled) {
+  background: white;
+  border-color: var(--color-accent-primary);
+  color: var(--color-accent-primary);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 25px rgba(173, 154, 101, 0.25);
+}
+
+.carouselBtn:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Estilos móviles */
+@media (max-width: 768px) {
+  .carouselBtn {
+    display: none;
+  }
+
+  .carouselContent.animated {
+    scroll-snap-type: x mandatory;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    transform: none !important;
+    padding-bottom: 0.5rem;
+  }
+
+  .carouselItem {
+    padding: 0 0.5rem;
+    scroll-snap-align: start;
+    flex: 0 0 50%;
+  }
+
+  /* Sobrescribir según clase dinámica */
+  .mobileItems1 .carouselItem {
+    flex: 0 0 100%;
+  }
+
+  .mobileItems15 .carouselItem {
+    flex: 0 0 66.666%;
+  }
+
+  .mobileItems2 .carouselItem {
+    flex: 0 0 50%;
+  }
+
+  /* Scrollbar */
+  .carouselContent.animated::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .carouselContent.animated::-webkit-scrollbar-thumb {
+    background: rgba(173, 154, 101, 0.3);
+    border-radius: 3px;
+  }
+
+  .carouselContent.animated::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .carouselContent.animated {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(173, 154, 101, 0.3) transparent;
+  }
+}
+
+/* Clases para desktop */
+.items1 .carouselItem {
+  flex: 0 0 100%;
+}
+
+.items2 .carouselItem {
+  flex: 0 0 50%;
+}
+
+.items3 .carouselItem {
+  flex: 0 0 33.333%;
+}
+
+.items4 .carouselItem {
+  flex: 0 0 25%;
+}
+
+.items5 .carouselItem {
+  flex: 0 0 20%;
+}
+
+/* Evitar problemas con skeleton */
+.carouselContent.animated.loading .carouselItem {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Focus para accesibilidad */
+.carouselBtn:focus {
+  outline: 2px solid var(--color-accent-primary);
+  outline-offset: 2px;
+}
+
+/* Mejorar el espaciado en móvil */
+@media (max-width: 480px) {
+  .carouselItem {
+    padding: 0 0.375rem;
+  }
+
+  .mobileItems15 .carouselItem {
+    flex: 0 0 65%; /* Un poco más pequeño para mejor visualización */
+  }
+}
