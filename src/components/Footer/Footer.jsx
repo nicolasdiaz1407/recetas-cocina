@@ -223,7 +223,7 @@ export default function Footer() {
             </div>
 
             <div className={styles.legalLinks}>
-              <Link to="/about" className={styles.legalLink}>
+              <Link to="/aboutProyect" className={styles.legalLink}>
                 <HiInformationCircle size={16} />
                 <span>Sobre el Proyecto</span>
               </Link>

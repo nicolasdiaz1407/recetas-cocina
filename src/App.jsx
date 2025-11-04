@@ -4,7 +4,7 @@ import Navigation from "./components/Navigation/Navigation";
 import Home from "./pages/Home";
 import Recetas from "./pages/Recetas/Recetas";
 import RecipePage from "./pages/RecipePage/RecipePage";
-import Footer from "./components/Footer/Footer";
+import About from "./pages/About/About";
 
 function App() {
   return (
@@ -14,8 +14,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/recetas" element={<Recetas />} />
         <Route path="/receta/:id" element={<RecipePage />} />
+        <Route path="/aboutProyect" element={<About />} />
       </Routes>
-      <Footer />
     </Router>
   );
 }

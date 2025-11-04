@@ -3,6 +3,7 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import Hero from "../../components/Hero/Hero";
 import RecetasLayout from "../../components/RecetasLayout/RecetasLayout";
 import { useEffect } from "react";
+import Footer from "../../components/Footer/Footer";
 
 export default function Recetas() {
   const [searchParams] = useSearchParams();
@@ -80,8 +81,9 @@ export default function Recetas() {
       <RecetasLayout
         initialCategory={categoriaFromURL}
         initialArea={areaFromURL}
-        onClearFilters={clearAllFilters} // 👈 Nueva prop
+        onClearFilters={clearAllFilters}
       />
+      <Footer />
     </div>
   );
 }
