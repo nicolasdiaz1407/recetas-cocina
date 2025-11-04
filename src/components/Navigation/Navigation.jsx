@@ -68,7 +68,11 @@ export default function Navigation() {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/about" onClick={closeMenu} className={navLinkClass}>
+              <NavLink
+                to="/aboutApp"
+                onClick={closeMenu}
+                className={navLinkClass}
+              >
                 About
               </NavLink>
             </li>
@@ -135,7 +139,11 @@ export default function Navigation() {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/about" onClick={closeMenu} className={navLinkClass}>
+              <NavLink
+                to="/aboutApp"
+                onClick={closeMenu}
+                className={navLinkClass}
+              >
                 About
               </NavLink>
             </li>

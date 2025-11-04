@@ -1,0 +1,358 @@
+/* src/pages/AboutApp/AboutApp.module.css */
+.aboutApp {
+  min-height: 100vh;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Introducción Cálida */
+.warmIntro {
+  padding: 6rem 0 4rem;
+  background: linear-gradient(135deg, #fefaf0 0%, var(--color-bg-light) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.warmIntro::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-accent-primary),
+    transparent
+  );
+}
+
+.introContent {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.introBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--color-accent-primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  animation: slideInDown 0.6s ease;
+}
+
+.badgeIcon {
+  font-size: 0.8rem;
+}
+
+.introTitle {
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin-bottom: 2rem;
+  line-height: 1.2;
+  font-family: "Playfair Display", serif;
+  animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+.accent {
+  background: linear-gradient(
+    135deg,
+    var(--color-accent-primary) 0%,
+    var(--color-accent-secondary) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.introText {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--color-text-light);
+  margin-bottom: 3rem;
+  animation: fadeInUp 0.8s ease 0.4s both;
+}
+
+.introText p {
+  margin: 0;
+}
+
+.introText strong {
+  color: var(--color-text-dark);
+  font-weight: 600;
+}
+
+.statsPreview {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  animation: fadeInUp 0.8s ease 0.6s both;
+}
+
+.statPreview {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 2rem;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--color-border);
+}
+
+.statIcon {
+  font-size: 2rem;
+  color: var(--color-accent-primary);
+}
+
+.statNumber {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  font-weight: 500;
+}
+
+/* Sección de Compromiso */
+.commitmentSection {
+  padding: 6rem 0;
+  background: linear-gradient(135deg, var(--color-bg-light) 0%, #f8f5f0 100%);
+}
+
+.commitmentContent {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.sectionTitle {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin-bottom: 3rem;
+  font-family: "Playfair Display", serif;
+}
+
+.commitmentGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.commitmentItem {
+  background: white;
+  padding: 2.5rem 2rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--color-border);
+  transition: all 0.3s ease;
+}
+
+.commitmentItem:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+}
+
+.commitmentIcon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.commitmentItem h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--color-text-dark);
+  margin-bottom: 1rem;
+}
+
+.commitmentItem p {
+  color: var(--color-text-light);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.finalCta {
+  background: white;
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--color-border);
+}
+
+.finalCta h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin-bottom: 1rem;
+  font-family: "Playfair Display", serif;
+}
+
+.finalCta p {
+  font-size: 1.1rem;
+  color: var(--color-text-light);
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.primaryCta,
+.secondaryCta {
+  padding: 1rem 2.5rem;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.primaryCta {
+  background: var(--color-accent-primary);
+  color: white;
+}
+
+.primaryCta:hover {
+  background: var(--color-accent-secondary);
+  transform: translateY(-2px);
+}
+
+.secondaryCta {
+  background: transparent;
+  color: var(--color-accent-primary);
+  border: 2px solid var(--color-accent-primary);
+}
+
+.secondaryCta:hover {
+  background: var(--color-accent-primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .warmIntro {
+    padding: 4rem 0 3rem;
+  }
+
+  .introTitle {
+    font-size: 2.2rem;
+  }
+
+  .introText {
+    font-size: 1.05rem;
+  }
+
+  .statsPreview {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .statPreview {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .commitmentSection {
+    padding: 4rem 0;
+  }
+
+  .sectionTitle {
+    font-size: 2.2rem;
+  }
+
+  .commitmentGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .finalCta {
+    padding: 2rem;
+  }
+
+  .finalCta h3 {
+    font-size: 1.6rem;
+  }
+
+  .ctaButtons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .primaryCta,
+  .secondaryCta {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .introTitle {
+    font-size: 1.8rem;
+  }
+
+  .commitmentItem {
+    padding: 2rem 1.5rem;
+  }
+}
