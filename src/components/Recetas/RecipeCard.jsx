@@ -1,4 +1,3 @@
-// src/components/Recetas/RecipeCard.jsx (actualizado)
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ImageFallback from "../ImageFallback/ImageFallback";
@@ -13,13 +12,18 @@ export default function RecipeCard({
 }) {
   const navigate = useNavigate();
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   const difficulty = ["Fácil", "Media", "Difícil"][
     Math.floor(Math.random() * 3)
   ];
-  const category = recipe.strCategory || currentCategory || "General";
+  const category = recipe?.strCategory || currentCategory || "General";
 
   const handleImageLoad = () => setImageLoaded(true);
+  const handleImageError = () => {
+    setImageError(true);
+    setImageLoaded(true); // tratamos el error como "terminado" para desaparecer skeleton
+  };
 
   const handleFavoriteClick = (e) => {
     e.stopPropagation();
@@ -33,17 +37,30 @@ export default function RecipeCard({
   return (
     <article className={styles.card} onClick={handleCardClick}>
       {/* Image Container con ImageFallback */}
-      <div className={styles.imageContainer}>
-        {!imageLoaded && <div className={styles.imageSkeleton} />}
+      <div
+        className={styles.imageContainer}
+        aria-busy={!imageLoaded}
+        aria-label={recipe.strMeal + " - imagen"}
+      >
+        {/* skeleton / placeholder siempre visible hasta que imageLoaded === true */}
+        {!imageLoaded && (
+          <div className={styles.imageSkeleton} role="img" aria-hidden="true">
+            <div className={styles.placeholderBox} />
+          </div>
+        )}
 
+        {/* ImageFallback: si falla onError se muestra el skeleton/placeholder */}
         <ImageFallback
           src={recipe.strMealThumb}
           alt={recipe.strMeal}
-          className={styles.image}
+          className={`${styles.image} ${
+            imageLoaded ? styles.imageVisible : ""
+          }`}
           onLoad={handleImageLoad}
+          onError={handleImageError}
           loading="lazy"
           size="carousel"
-          style={{ opacity: imageLoaded ? 1 : 0 }}
+          style={{ opacity: imageLoaded && !imageError ? 1 : 0 }}
         />
 
         {/* Favorite Button */}
@@ -62,7 +79,9 @@ export default function RecipeCard({
         </button>
 
         {/* Category Badge */}
-        <div className={styles.categoryBadge}>{category}</div>
+        <div className={styles.categoryBadge} aria-hidden="true">
+          {category}
+        </div>
 
         {/* Hover Overlay */}
         <div className={styles.overlay}>

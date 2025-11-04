@@ -1,4 +1,4 @@
-// src/components/Filters/Filters.jsx (COMPLETAMENTE ACTUALIZADO)
+// src/components/Filters/Filters.jsx
 import React, { useState } from "react";
 import styles from "./Filters.module.css";
 import { HiAdjustmentsHorizontal } from "react-icons/hi2";
@@ -37,13 +37,6 @@ export default function Filters({
     }
   };
 
-  // Obtener la opción seleccionada actualmente
-  const getSelectedOptionLabel = () => {
-    if (!selectedOption) return null;
-    const selected = options.find((opt) => opt.value === selectedOption);
-    return selected ? selected.label : null;
-  };
-
   const handleButtonClick = () => {
     setShowModal(true);
   };
@@ -65,11 +58,6 @@ export default function Filters({
       >
         <HiAdjustmentsHorizontal size={18} />
         <span className={styles.buttonText}>{getButtonText()}</span>
-        {getSelectedOptionLabel() && (
-          <span className={styles.selectedIndicator}>
-            {getSelectedOptionLabel()}
-          </span>
-        )}
         {selectedOption && <span className={styles.activeDot}></span>}
       </button>
 

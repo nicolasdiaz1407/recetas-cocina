@@ -49,7 +49,7 @@ export default function Navigation() {
         {/* Logo central */}
         <div className={styles.logoContainer}>
           <Link to="/" onClick={closeMenu}>
-            <img src="Logo.png" alt="Recetas App" />
+            <img src="/Logo.png" alt="Recetas App" />
           </Link>
         </div>
 

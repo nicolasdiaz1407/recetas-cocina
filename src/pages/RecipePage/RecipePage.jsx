@@ -5,6 +5,7 @@ import Hero from "../../components/Hero/Hero";
 import RecipeDetail from "../../components/RecipeDetail/RecipeDetail";
 import RecipeSkeleton from "./RecipeSkeleton";
 import useRecipe from "../../hooks/useRecipe";
+import Footer from "../../components/Footer/Footer";
 import styles from "./RecipePage.module.css";
 import { HiArrowLeft } from "react-icons/hi2";
 
@@ -109,6 +110,7 @@ export default function RecipePage() {
         onToggleFavorite={toggleFavorite}
         isFavorite={isFavorite}
       />
+      <Footer />
     </div>
   );
 }

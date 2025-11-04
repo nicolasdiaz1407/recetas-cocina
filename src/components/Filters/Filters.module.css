@@ -1,4 +1,4 @@
-/* src/components/Filters/Filters.module.css (COMPLETAMENTE ACTUALIZADO) */
+/* src/components/Filters/Filters.module.css */
 .filterButton {
   display: flex;
   align-items: center;
@@ -31,19 +31,7 @@
   font-weight: 500;
 }
 
-.selectedIndicator {
-  background: var(--color-accent-primary);
-  color: white;
-  padding: 0.2rem 0.5rem;
-  border-radius: 12px;
-  font-size: 0.7rem;
-  font-weight: 600;
-  margin-left: auto;
-  max-width: 80px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
+/* ELIMINADO: .selectedIndicator - Ya no mostramos el texto de la opción seleccionada */
 
 .activeDot {
   position: absolute;
@@ -77,11 +65,6 @@
     padding: 0.6rem 1rem;
     min-width: 110px;
     font-size: 0.8rem;
-  }
-
-  .selectedIndicator {
-    font-size: 0.65rem;
-    max-width: 70px;
   }
 }
 

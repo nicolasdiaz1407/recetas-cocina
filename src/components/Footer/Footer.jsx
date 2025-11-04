@@ -82,7 +82,7 @@ export default function Footer() {
           <div className={styles.brandColumn}>
             <div className={styles.logoWrapper}>
               <div className={styles.logo}>
-                <img src="Logo.png" alt="Appetito & Kitchen" />
+                <img src="/Logo.png" alt="Appetito & Kitchen" />
               </div>
               <span className={styles.brandName}>Appetito & Kitchen</span>
             </div>

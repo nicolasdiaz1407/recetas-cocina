@@ -48,9 +48,9 @@ const AVAILABLE_AREAS = [
 export default function RecetasLayout({
   initialCategory = "",
   initialArea = "",
-  onClearFilters, // 👈 Nueva prop opcional
+  onClearFilters,
 }) {
-  const navigate = useNavigate(); // 👈 Hook de navegación
+  const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [selectedFilter, setSelectedFilter] = useState(initialCategory);
   const [selectedArea, setSelectedArea] = useState(initialArea);
@@ -103,15 +103,12 @@ export default function RecetasLayout({
         params.set("area", selectedArea);
       }
 
-      // Usar replace: true para no agregar nueva entrada al historial
       navigate(`/recetas?${params.toString()}`, { replace: true });
     } else {
-      // Si no hay filtros activos, limpiar la URL
       navigate("/recetas", { replace: true });
     }
   }, [selectedFilter, selectedArea, navigate]);
 
-  // Opciones de filtro por categoría
   const categoryOptions = [
     { label: "Todas", value: "", icon: "🍽️" },
     ...categories.map((cat) => ({
@@ -157,7 +154,6 @@ export default function RecetasLayout({
     setSearch("");
     setCurrentPage(1);
 
-    // Limpiar también la URL
     if (onClearFilters) {
       onClearFilters();
     }
@@ -179,13 +175,11 @@ export default function RecetasLayout({
 
   return (
     <div className={styles.recetasContainer}>
-      {/* Hero */}
       <div className={styles.heroSection}>
         <h2 className={styles.title}>{getTitle()}</h2>
         <p className={styles.subtitle}>{getSubtitle()}</p>
       </div>
 
-      {/* Search & Filters */}
       <div className={styles.searchFiltersSection}>
         <div className={styles.searchContainer}>
           <SearchBar

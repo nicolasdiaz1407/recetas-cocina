@@ -1,6 +1,7 @@
 // src/App.jsx
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation/Navigation";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import Home from "./pages/Home";
 import Recetas from "./pages/Recetas/Recetas";
 import RecipePage from "./pages/RecipePage/RecipePage";
@@ -11,6 +12,7 @@ function App() {
   return (
     <Router>
       <Navigation />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/recetas" element={<Recetas />} />
