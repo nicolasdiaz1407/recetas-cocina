@@ -1,16 +1,14 @@
+// src/components/RecipeCard/RecipeCard.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ImageFallback from "../ImageFallback/ImageFallback";
+import { useFavorites } from "../../hooks/useFavorites";
 import styles from "./RecipeCard.module.css";
 import { HiHeart, HiOutlineHeart, HiClock, HiEye } from "react-icons/hi2";
 
-export default function RecipeCard({
-  recipe,
-  currentCategory,
-  onToggleFavorite,
-  isFavorite = false,
-}) {
+export default function RecipeCard({ recipe, currentCategory }) {
   const navigate = useNavigate();
+  const { isFavorite, toggleFavorite } = useFavorites();
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
 
@@ -22,20 +20,32 @@ export default function RecipeCard({
   const handleImageLoad = () => setImageLoaded(true);
   const handleImageError = () => {
     setImageError(true);
-    setImageLoaded(true); // tratamos el error como "terminado" para desaparecer skeleton
+    setImageLoaded(true);
   };
 
   const handleFavoriteClick = (e) => {
+    e.preventDefault();
     e.stopPropagation();
-    onToggleFavorite?.(recipe);
+    toggleFavorite(recipe);
   };
 
   const handleCardClick = () => {
     navigate(`/receta/${recipe.idMeal}`);
   };
 
+  // Manejar click en el card, evitando el botón de favoritos
+  const handleCardClickWrapper = (e) => {
+    // Si el click fue en el botón de favoritos, no navegar
+    if (e.target.closest(`.${styles.favoriteButton}`)) {
+      return;
+    }
+    handleCardClick();
+  };
+
+  const favorite = isFavorite(recipe.idMeal);
+
   return (
-    <article className={styles.card} onClick={handleCardClick}>
+    <article className={styles.card} onClick={handleCardClickWrapper}>
       {/* Image Container con ImageFallback */}
       <div
         className={styles.imageContainer}
@@ -65,13 +75,17 @@ export default function RecipeCard({
 
         {/* Favorite Button */}
         <button
-          className={styles.favoriteButton}
+          className={`${styles.favoriteButton} ${
+            favorite ? styles.favoriteActive : ""
+          }`}
           onClick={handleFavoriteClick}
-          aria-label={
-            isFavorite ? "Quitar de favoritos" : "Agregar a favoritos"
-          }
+          aria-label={favorite ? "Quitar de favoritos" : "Agregar a favoritos"}
+          onTouchStart={(e) => {
+            // Prevenir el comportamiento táctil por defecto que podría causar navegación
+            e.stopPropagation();
+          }}
         >
-          {isFavorite ? (
+          {favorite ? (
             <HiHeart size={20} className={styles.favoriteIcon} />
           ) : (
             <HiOutlineHeart size={20} className={styles.favoriteIcon} />

@@ -1,5 +1,6 @@
 // src/pages/AboutApp/components/Testimonials/Testimonials.jsx
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./Testimonials.module.css";
 import {
   FaQuoteLeft,
@@ -80,6 +81,7 @@ const testimonialsData = [
 export default function Testimonials() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const navigate = useNavigate();
 
   const nextTestimonial = () => {
     if (isAnimating) return;
@@ -233,7 +235,12 @@ export default function Testimonials() {
             Descubre por qué miles de personas eligen Appetito & Kitchen para
             transformar su experiencia en la cocina cada día.
           </p>
-          <button className={styles.ctaButton}>Comenzar a Cocinar</button>
+          <button
+            className={styles.ctaButton}
+            onClick={() => navigate("/recetas")}
+          >
+            Explorar Recetas
+          </button>
         </div>
       </div>
     </section>

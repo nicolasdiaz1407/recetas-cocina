@@ -1,5 +1,6 @@
 // src/pages/AboutApp/AboutApp.jsx
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Hero from "../../components/Hero/Hero";
 import MissionVision from "./components/MissionVision/MissionVision";
 import OurStory from "./components/OurStory/OurStory";
@@ -11,6 +12,7 @@ import { FaHeart, FaUsers, FaSeedling } from "react-icons/fa";
 import Footer from "../../components/Footer/Footer";
 
 export default function AboutApp() {
+  const navigate = useNavigate();
   const breadcrumbItems = [
     { path: "/", label: "Inicio" },
     { label: "Sobre Nosotros" },
@@ -133,12 +135,15 @@ export default function AboutApp() {
                   cómo cada receta puede ser el inicio de una nueva aventura.
                 </p>
                 <div className={styles.ctaButtons}>
-                  <button className={styles.primaryCta}>
+                  <button
+                    className={styles.primaryCta}
+                    onClick={() => navigate("/recetas")}
+                  >
                     Explorar Recetas
                   </button>
-                  <button className={styles.secondaryCta}>
+                  {/*<button className={styles.secondaryCta}>
                     Ver Categorías
-                  </button>
+                  </button>*/}
                 </div>
               </div>
             </div>

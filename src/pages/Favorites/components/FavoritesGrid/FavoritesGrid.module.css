@@ -1,0 +1,436 @@
+/* src/pages/Favorites/components/FavoritesGrid/FavoritesGrid.module.css */
+.favoritesGridContainer {
+  width: 100%;
+  position: relative;
+}
+
+/* Grid Header */
+.gridHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 3rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid var(--color-border);
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.headerInfo {
+  flex: 1;
+  min-width: 300px;
+}
+
+.gridTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin: 0 0 0.5rem 0;
+  font-family: "Playfair Display", serif;
+}
+
+.recipeCount {
+  font-size: 1.1rem;
+  color: var(--color-text-light);
+  font-weight: 500;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Dropdown Styles */
+.dropdownContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownTrigger {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: white;
+  padding: 0.875rem 1.25rem;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  font-size: 0.95rem;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 200px;
+  justify-content: space-between;
+  font-weight: 500;
+}
+
+.dropdownTrigger:hover {
+  border-color: var(--color-accent-primary);
+  box-shadow: 0 4px 20px rgba(173, 154, 101, 0.15);
+  transform: translateY(-1px);
+}
+
+.dropdownIcon {
+  color: var(--color-accent-primary);
+  flex-shrink: 0;
+}
+
+.dropdownArrow {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--color-text-light);
+}
+
+.dropdownArrow.rotated {
+  transform: rotate(180deg);
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  padding: 0.5rem;
+  z-index: 1000;
+  margin-top: 0.5rem;
+  animation: dropdownFadeIn 0.2s ease-out;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: none;
+  background: none;
+  text-align: left;
+  font-size: 0.95rem;
+  color: var(--color-text);
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.dropdownItem:hover {
+  background: var(--color-bg-light);
+  color: var(--color-accent-primary);
+}
+
+.dropdownItem.selected {
+  background: rgba(173, 154, 101, 0.1);
+  color: var(--color-accent-primary);
+  font-weight: 600;
+}
+
+.checkIcon {
+  color: var(--color-accent-primary);
+  flex-shrink: 0;
+  margin-left: 0.5rem;
+}
+
+/* Clear Button */
+.clearButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(231, 76, 60, 0.1);
+  color: #e74c3c;
+  border: 1px solid rgba(231, 76, 60, 0.2);
+  padding: 0.875rem 1.5rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.clearButton:hover:not(:disabled) {
+  background: #e74c3c;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(231, 76, 60, 0.3);
+}
+
+.clearButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Modal Styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(4, 9, 30, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 1rem;
+  animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal {
+  background: white;
+  border-radius: 20px;
+  padding: 2.5rem;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.modalIcon {
+  color: #e74c3c;
+  flex-shrink: 0;
+}
+
+.modalHeader h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin: 0;
+  font-family: "Playfair Display", serif;
+}
+
+.modalBody {
+  margin-bottom: 2rem;
+}
+
+.modalBody p {
+  color: var(--color-text-light);
+  line-height: 1.6;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.modalActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.modalCancel {
+  padding: 0.875rem 1.5rem;
+  border: 1px solid var(--color-border);
+  background: white;
+  color: var(--color-text);
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modalCancel:hover {
+  background: var(--color-bg-light);
+  border-color: var(--color-text-light);
+}
+
+.modalConfirm {
+  padding: 0.875rem 1.5rem;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modalConfirm:hover {
+  background: #c0392b;
+  transform: translateY(-1px);
+}
+
+/* Recipes Grid */
+.recipesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  animation: fadeInUp 0.6s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* No Results */
+.noResults {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--color-bg-light);
+  border-radius: 20px;
+  border: 2px dashed var(--color-border);
+}
+
+.noResultsContent {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.noResultsIcon {
+  color: var(--color-text-light);
+  margin-bottom: 1.5rem;
+  opacity: 0.6;
+}
+
+.noResults h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text-dark);
+  margin: 0 0 1rem 0;
+}
+
+.noResults p {
+  color: var(--color-text-light);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.resetFiltersButton {
+  background: var(--color-accent-primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.resetFiltersButton:hover {
+  background: var(--color-accent-secondary);
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .recipesGrid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .gridHeader {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.5rem;
+  }
+
+  .headerInfo {
+    min-width: auto;
+    text-align: center;
+  }
+
+  .gridTitle {
+    font-size: 2rem;
+  }
+
+  .controls {
+    justify-content: center;
+  }
+
+  .dropdownTrigger {
+    min-width: 160px;
+  }
+
+  .recipesGrid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .modal {
+    padding: 2rem 1.5rem;
+  }
+
+  .modalActions {
+    flex-direction: column;
+  }
+}
+
+/*@media (max-width: 480px) {
+  .controls {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .dropdownContainer {
+    width: 100%;
+  }
+
+  .dropdownTrigger {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .clearButton {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .recipesGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .noResults {
+    padding: 3rem 1.5rem;
+  }
+}*/

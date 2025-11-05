@@ -313,3 +313,54 @@
     max-width: 100%;
   }
 }
+
+/* Favorite Button Styles */
+.favoriteButton {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  z-index: 100;
+}
+
+.favoriteButton:hover {
+  background: white;
+  transform: scale(1.06);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+}
+
+.favoriteActive {
+  background: white;
+  border-color: rgba(231, 76, 60, 0.3);
+}
+
+.favoriteActive .favoriteIcon {
+  color: #e74c3c !important;
+  fill: #e74c3c !important;
+}
+
+.favoriteIcon {
+  color: var(--color-text-light);
+  transition: all 0.2s ease;
+}
+
+.favoriteButton:hover .favoriteIcon {
+  color: var(--color-favorite);
+}
+
+/* Asegurar que el corazón tenga el color correcto cuando está activo */
+.favoriteActive .favoriteIcon {
+  color: #e74c3c !important;
+  fill: #e74c3c !important;
+}

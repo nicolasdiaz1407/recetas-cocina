@@ -1,0 +1,378 @@
+/* src/pages/Favorites/components/EmptyFavorites/EmptyFavorites.module.css */
+.emptyContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 2rem 0;
+}
+
+.emptyContent {
+  text-align: center;
+  max-width: 800px;
+  width: 100%;
+}
+
+/* Heart Animation */
+.heartAnimation {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 3rem;
+}
+
+.heartOutline,
+.heartFill {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 5rem;
+  transition: all 0.5s ease;
+}
+
+.heartOutline {
+  color: var(--color-text-light);
+  opacity: 0.3;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.heartFill {
+  color: var(--color-favorite);
+  opacity: 0;
+  animation: heartbeat 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  25%,
+  75% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+/* Empty Text */
+.emptyText {
+  margin-bottom: 4rem;
+}
+
+.emptyTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin: 0 0 1.5rem 0;
+  font-family: "Playfair Display", serif;
+  background: linear-gradient(
+    135deg,
+    var(--color-text-dark) 0%,
+    var(--color-accent-primary) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.emptyDescription {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--color-text-light);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Motivation Stats */
+.motivationStats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.statItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--color-border);
+  transition: all 0.3s ease;
+}
+
+.statItem:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.statIcon {
+  font-size: 2rem;
+  color: var(--color-accent-primary);
+  flex-shrink: 0;
+}
+
+.globeIcon,
+.clockIcon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.statContent {
+  text-align: left;
+}
+
+.statNumber {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.statLabel {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  font-weight: 500;
+}
+
+/* CTA Section */
+.ctaSection {
+  background: white;
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--color-border);
+}
+
+.ctaTitle {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin: 0 0 1rem 0;
+  font-family: "Playfair Display", serif;
+}
+
+.ctaSubtitle {
+  font-size: 1.1rem;
+  color: var(--color-text-light);
+  margin-bottom: 2.5rem;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.primaryCta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(
+    135deg,
+    var(--color-accent-primary) 0%,
+    var(--color-accent-secondary) 100%
+  );
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.primaryCta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(173, 154, 101, 0.3);
+}
+
+.arrowIcon {
+  transition: transform 0.3s ease;
+}
+
+.primaryCta:hover .arrowIcon {
+  transform: translateX(4px);
+}
+
+.secondaryCta {
+  background: transparent;
+  color: var(--color-accent-primary);
+  border: 2px solid var(--color-accent-primary);
+  padding: 1rem 2rem;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.secondaryCta:hover {
+  background: var(--color-accent-primary);
+  color: white;
+  transform: translateY(-3px);
+}
+
+/* Tips Section */
+.tipsSection {
+  border-top: 1px solid var(--color-border);
+  padding-top: 2.5rem;
+}
+
+.tipsTitle {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--color-text-dark);
+  margin: 0 0 2rem 0;
+}
+
+.tipsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.tipCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--color-bg-light);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.tipCard:hover {
+  background: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.tipNumber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  background: var(--color-accent-primary);
+  color: white;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.tipContent {
+  text-align: left;
+}
+
+.tipContent strong {
+  display: block;
+  color: var(--color-text-dark);
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.tipContent p {
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .emptyTitle {
+    font-size: 2rem;
+  }
+
+  .emptyDescription {
+    font-size: 1.1rem;
+  }
+
+  .motivationStats {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .ctaSection {
+    padding: 2.5rem 2rem;
+  }
+
+  .ctaTitle {
+    font-size: 1.5rem;
+  }
+
+  .ctaButtons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .primaryCta,
+  .secondaryCta {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+
+  .tipsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .emptyContainer {
+    padding: 1rem 0;
+  }
+
+  .heartAnimation {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 2rem;
+  }
+
+  .heartOutline,
+  .heartFill {
+    font-size: 4rem;
+  }
+
+  .emptyTitle {
+    font-size: 1.8rem;
+  }
+
+  .ctaSection {
+    padding: 2rem 1.5rem;
+  }
+
+  .statItem {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .statContent {
+    text-align: center;
+  }
+}

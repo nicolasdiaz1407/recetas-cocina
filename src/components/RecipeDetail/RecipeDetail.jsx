@@ -1,4 +1,4 @@
-// src/components/RecipeDetail/RecipeDetail.jsx (actualizado)
+// src/components/RecipeDetail/RecipeDetail.jsx
 import React, { useState, useMemo } from "react";
 import ImageFallback from "../ImageFallback/ImageFallback";
 import styles from "./RecipeDetail.module.css";
@@ -45,8 +45,10 @@ export default function RecipeDetail({ recipe, onToggleFavorite, isFavorite }) {
   ];
   const cookTime = Math.max(15, Math.min(120, ingredients.length * 3));
 
-  const handleFavoriteClick = () => {
-    onToggleFavorite?.(recipe);
+  const handleFavoriteClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    onToggleFavorite?.();
   };
 
   const handleShare = async () => {
@@ -95,9 +97,9 @@ export default function RecipeDetail({ recipe, onToggleFavorite, isFavorite }) {
               }
             >
               {isFavorite ? (
-                <HiHeart size={24} />
+                <HiHeart size={24} className={styles.favoriteIcon} />
               ) : (
-                <HiOutlineHeart size={24} />
+                <HiOutlineHeart size={24} className={styles.favoriteIcon} />
               )}
             </button>
           </div>

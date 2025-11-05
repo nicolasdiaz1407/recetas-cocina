@@ -1,10 +1,11 @@
-// src/pages/RecipePage.jsx
-import React, { useState, useEffect } from "react";
+// src/pages/RecipePage/RecipePage.jsx
+import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Hero from "../../components/Hero/Hero";
 import RecipeDetail from "../../components/RecipeDetail/RecipeDetail";
 import RecipeSkeleton from "./RecipeSkeleton";
 import useRecipe from "../../hooks/useRecipe";
+import { useFavorites } from "../../hooks/useFavorites";
 import Footer from "../../components/Footer/Footer";
 import styles from "./RecipePage.module.css";
 import { HiArrowLeft } from "react-icons/hi2";
@@ -13,32 +14,7 @@ export default function RecipePage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { recipe, loading, error } = useRecipe(id);
-  const [favorites, setFavorites] = useState([]);
-
-  // Cargar favoritos del localStorage
-  useEffect(() => {
-    const saved = localStorage.getItem("favorites");
-    if (saved) {
-      setFavorites(JSON.parse(saved));
-    }
-  }, []);
-
-  const isFavorite = recipe
-    ? favorites.some((fav) => fav.idMeal === recipe.idMeal)
-    : false;
-
-  const toggleFavorite = (recipeToToggle) => {
-    let updatedFavorites;
-    if (isFavorite) {
-      updatedFavorites = favorites.filter(
-        (fav) => fav.idMeal !== recipeToToggle.idMeal
-      );
-    } else {
-      updatedFavorites = [...favorites, recipeToToggle];
-    }
-    setFavorites(updatedFavorites);
-    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-  };
+  const { isFavorite, toggleFavorite } = useFavorites();
 
   // Configuración del breadcrumb para el Hero
   const breadcrumbItems = recipe
@@ -107,8 +83,8 @@ export default function RecipePage() {
       />
       <RecipeDetail
         recipe={recipe}
-        onToggleFavorite={toggleFavorite}
-        isFavorite={isFavorite}
+        onToggleFavorite={() => toggleFavorite(recipe)}
+        isFavorite={isFavorite(recipe.idMeal)}
       />
       <Footer />
     </div>
